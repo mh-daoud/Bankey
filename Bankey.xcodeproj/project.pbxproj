@@ -11,6 +11,8 @@
 		848BA1F02B08791500A54832 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BA1EF2B08791500A54832 /* UIView+Extensions.swift */; };
 		848BA1F42B08D2FA00A54832 /* OnBoardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BA1F32B08D2FA00A54832 /* OnBoardingContainerViewController.swift */; };
 		848BA1F62B09009C00A54832 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BA1F52B09009C00A54832 /* OnBoardingViewController.swift */; };
+		848BA1F92B09189800A54832 /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BA1F82B09189800A54832 /* DummyViewController.swift */; };
+		848BA1FB2B091CA300A54832 /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BA1FA2B091CA300A54832 /* LocalState.swift */; };
 		84A08D322B048E5600992F9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A08D312B048E5600992F9E /* AppDelegate.swift */; };
 		84A08D362B048E5600992F9E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A08D352B048E5600992F9E /* LoginViewController.swift */; };
 		84A08D3B2B048E5900992F9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84A08D3A2B048E5900992F9E /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 		848BA1EF2B08791500A54832 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		848BA1F32B08D2FA00A54832 /* OnBoardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingContainerViewController.swift; sourceTree = "<group>"; };
 		848BA1F52B09009C00A54832 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		848BA1F82B09189800A54832 /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
+		848BA1FA2B091CA300A54832 /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
 		84A08D2E2B048E5600992F9E /* Bankey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bankey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84A08D312B048E5600992F9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84A08D352B048E5600992F9E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				848BA1EC2B0870CC00A54832 /* Factories.swift */,
+				848BA1FA2B091CA300A54832 /* LocalState.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -75,6 +80,14 @@
 				848BA1F52B09009C00A54832 /* OnBoardingViewController.swift */,
 			);
 			name = OnBoarding;
+			sourceTree = "<group>";
+		};
+		848BA1F72B09188900A54832 /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				848BA1F82B09189800A54832 /* DummyViewController.swift */,
+			);
+			name = Dummy;
 			sourceTree = "<group>";
 		};
 		84A08D252B048E5600992F9E = {
@@ -118,6 +131,7 @@
 		84A08D462B0491FF00992F9E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				848BA1F72B09188900A54832 /* Dummy */,
 				848BA1F22B08D2DF00A54832 /* OnBoarding */,
 				848BA1F12B08D2D600A54832 /* Login */,
 			);
@@ -195,12 +209,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A08D482B04927200992F9E /* LoginView.swift in Sources */,
+				848BA1FB2B091CA300A54832 /* LocalState.swift in Sources */,
 				84A08D362B048E5600992F9E /* LoginViewController.swift in Sources */,
 				848BA1F62B09009C00A54832 /* OnBoardingViewController.swift in Sources */,
 				848BA1F02B08791500A54832 /* UIView+Extensions.swift in Sources */,
 				848BA1F42B08D2FA00A54832 /* OnBoardingContainerViewController.swift in Sources */,
 				848BA1ED2B0870CC00A54832 /* Factories.swift in Sources */,
 				84A08D322B048E5600992F9E /* AppDelegate.swift in Sources */,
+				848BA1F92B09189800A54832 /* DummyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

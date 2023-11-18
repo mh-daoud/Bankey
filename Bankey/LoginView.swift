@@ -44,6 +44,11 @@ class LoginView : UIView {
         [userNameField,divider, passwordField].forEach(stackView.addArrangedSubview(_:))
         return stackView
     }()
+    
+    func resetForm(){
+        userNameField.text = ""
+        passwordField.text = ""
+    }
 }
 
 

@@ -17,25 +17,36 @@ class OnBoardingViewController : UIViewController {
         style()
         layout()
     }
+    
+    init(heroImageName: String, titleText: String) {
+        self.imageView.image =  UIImage(named: heroImageName)
+        self.descriptionLabel.text = titleText
+        super.init(nibName: nil, bundle: nil)
+        //"Bankey is faster, easier to use, and has a brand new look and feel that will make you feel like you are back in 1989."
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension OnBoardingViewController {
     func style() {
+        view.backgroundColor = .systemBackground
+
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 20
         
-        imageView.image =  UIImage(named: "delorean")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.font = .preferredFont(forTextStyle: .title3)
         descriptionLabel.adjustsFontForContentSizeCategory = true
         descriptionLabel.textAlignment = .center
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = "Bankey is faster, easier to use, and has a brand new look and feel that will make you feel like you are back in 1989."
+        
     }
     
     func layout() {

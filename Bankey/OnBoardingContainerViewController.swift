@@ -12,6 +12,7 @@ class OnBoardingContainerViewController : UIViewController {
     let pageViewController: UIPageViewController
     var pages = [UIViewController]()
     var currentVC: UIViewController
+    let closeButton = UIButton(type: .system)
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -27,6 +28,16 @@ class OnBoardingContainerViewController : UIViewController {
     }
     
     override func viewDidLoad() {
+       setup()
+        style()
+        layout()
+        
+    }
+    
+}
+
+extension OnBoardingContainerViewController {
+    private func setup(){
         super.viewDidLoad()
         
         view.backgroundColor = .systemPurple
@@ -48,9 +59,23 @@ class OnBoardingContainerViewController : UIViewController {
         
         pageViewController.setViewControllers([pages.first!], direction: .forward, animated: false)
         currentVC = pages.first!
-        
     }
     
+    private func style(){
+        //Close Button
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.setTitle("Close", for: [])
+        closeButton.addTarget(self, action: #selector(closeTapped), for: .primaryActionTriggered)
+        view.addSubview(closeButton)
+    }
+    
+    private func layout(){
+        //Close Button
+        NSLayoutConstraint.activate([
+            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            closeButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2)
+        ])
+    }
 }
 
 extension OnBoardingContainerViewController : UIPageViewControllerDataSource {
@@ -80,5 +105,12 @@ extension OnBoardingContainerViewController : UIPageViewControllerDataSource {
     
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return pages.firstIndex(of: currentVC) ?? 0
+    }
+}
+
+// MARK: Actions
+extension OnBoardingContainerViewController {
+    @objc private func closeTapped(){
+        //TODO
     }
 }

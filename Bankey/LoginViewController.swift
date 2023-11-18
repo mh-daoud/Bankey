@@ -8,18 +8,59 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
+    lazy var appTitle : UILabel = {
+        let label = makeLabel(withText: "Bankey")
+        label.font = .boldSystemFont(ofSize: 24)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
+    lazy var appDescription : UILabel = {
+        let label = makeLabel(withText: "Your premium source for all things banking!")
+        label.font = .systemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        return label
+    }()
+    
     lazy var loginView : LoginView = {
         let view = LoginView(frame: .zero)
         return view
     }()
+    
+    lazy var signInButton : UIButton = {
+        let button = makeButton(withTitle: "Sign In")
+        button.backgroundColor = .systemBlue
+        button.addRoundedCorner(radius: 5)
+        button.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
+        return button
+    }()
+    
+    lazy var errorMessage : UILabel = {
+        let label = makeLabel(withText: "")
+        label.numberOfLines = 0
+        label.textColor = .systemRed
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
+    }()
+    
+    var username : String? {
+        return loginView.userNameField.text
+    }
+    
+    var password : String? {
+        return loginView.passwordField.text
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         style()
         layout()
     }
-
 }
 
 
@@ -29,12 +70,74 @@ extension LoginViewController {
     }
     
     func layout(){
-        view.addSubview(loginView)
         
+        [appTitle,appDescription,loginView,signInButton, errorMessage].forEach(view.addSubview(_:))
+        
+        //Login View
         NSLayoutConstraint.activate([
-            loginView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: loginView.trailingAnchor, multiplier: 1)
         ])
+        
+        //SignIn Button
+        NSLayoutConstraint.activate([
+            signInButton.topAnchor.constraint(equalToSystemSpacingBelow: loginView.bottomAnchor, multiplier: 2),
+            signInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            signInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
+        
+        //Error Message Label
+        NSLayoutConstraint.activate([
+            errorMessage.topAnchor.constraint(equalToSystemSpacingBelow: signInButton.bottomAnchor, multiplier: 2),
+            errorMessage.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            errorMessage.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
+        
+        //App Description Label
+        NSLayoutConstraint.activate([
+            loginView.topAnchor.constraint(equalToSystemSpacingBelow: appDescription.bottomAnchor, multiplier: 3),
+            appDescription.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            appDescription.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
+        
+        //App Title Label
+        NSLayoutConstraint.activate([
+            appDescription.topAnchor.constraint(equalToSystemSpacingBelow: appTitle.bottomAnchor, multiplier: 4),
+            appTitle.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            appTitle.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+        ])
+    }
+}
+
+
+extension LoginViewController {
+    @objc func signInTapped() {
+        errorMessage.isHidden = true
+        login()
+    }
+    
+    private func login() {
+        guard let username, let password else {
+            assertionFailure("Username / Password should never be nil!")
+            return
+        }
+        
+        if username.isEmpty || password.isEmpty {
+            configureView(withMessage: "Username / password cannot be blank")
+            return
+        }
+        
+        if username == "Kevin" && password == "Welcome" {
+            signInButton.configuration?.showsActivityIndicator = true
+        }
+        else {
+            configureView(withMessage: "Incorrect username / password")
+        }
+    }
+    
+    private func configureView(withMessage message : String) {
+        errorMessage.isHidden = false
+        errorMessage.text = message
     }
 }

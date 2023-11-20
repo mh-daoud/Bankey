@@ -25,6 +25,7 @@ extension AccountSummaryViewController {
     }
     
     private func setupTableView(){
+        tableView.backgroundColor = Theme.appColor
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AccountSummaryCell.self, forCellReuseIdentifier: AccountSummaryCell.reuseIdentifier)

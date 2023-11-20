@@ -21,7 +21,7 @@ class AccountSummaryCell : UITableViewCell {
     let chevronImageView = UIImageView()
     
     static let reuseIdentifier = "AccountSummaryCell"
-    static let rowHeight = CGFloat(100)
+    static let rowHeight = CGFloat(112)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -68,7 +68,7 @@ extension AccountSummaryCell {
         
         balanceAmountLabel.translatesAutoresizingMaskIntoConstraints = false
         balanceAmountLabel.textAlignment = .right
-        balanceAmountLabel.text = "929,464.44"
+        balanceAmountLabel.attributedText = makeFormattedBalance(dollars: "929,464", cents: "44")
         balanceStackView.addArrangedSubview(balanceAmountLabel)
         
         let chvronImage = UIImage(systemName: "chevron.right")!.withTintColor(Theme.appColor)
@@ -111,5 +111,22 @@ extension AccountSummaryCell {
             chevronImageView.centerYAnchor.constraint(equalTo: balanceStackView.centerYAnchor),
             trailingAnchor.constraint(equalToSystemSpacingAfter: chevronImageView.trailingAnchor, multiplier: 1)
         ])
+    }
+}
+
+
+extension AccountSummaryCell {
+    private func makeFormattedBalance(dollars: String, cents: String) -> NSMutableAttributedString {
+        let dollarSignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .callout), .baselineOffset: 8]
+        let dollarAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title1)]
+        let centAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .baselineOffset: 8]
+        let rootString = NSMutableAttributedString(string: "$", attributes: dollarSignAttributes)
+        let dollarString = NSAttributedString(string: dollars, attributes: dollarAttributes)
+        let centString = NSAttributedString(string: cents, attributes: centAttributes)
+        
+        rootString.append(dollarString)
+        rootString.append(centString)
+        
+        return rootString
     }
 }

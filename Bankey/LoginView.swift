@@ -29,6 +29,7 @@ class LoginView : UIView {
         let textField = makeTextField(withPlaceholder: "Password")
         textField.isSecureTextEntry = true
         textField.delegate = self
+        textField.enablePasswordToggle()
         return textField
     }()
     

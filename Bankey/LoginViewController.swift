@@ -18,11 +18,18 @@ protocol LoginViewControllerDelegate: AnyObject {
 
 class LoginViewController: UIViewController {
     
+    let leadingEdgeOnScreen: CGFloat = 16
+    let leadingEdgeOffScreen: CGFloat = -1000
+    
+    var appTitleLeadingConstraint : NSLayoutConstraint?
+    var appDescriptionLeadingConstraint: NSLayoutConstraint?
+    
     lazy var appTitle : UILabel = {
         let label = makeLabel(withText: "Bankey")
         label.font = .preferredFont(forTextStyle: .largeTitle)
         label.adjustsFontForContentSizeCategory = true
         label.textAlignment = .center
+        label.alpha = 0
         return label
     }()
     
@@ -32,6 +39,7 @@ class LoginViewController: UIViewController {
         label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.alpha = 0
         return label
     }()
     
@@ -79,6 +87,11 @@ class LoginViewController: UIViewController {
         self.signInButton.configuration?.showsActivityIndicator = false
         loginView.resetForm()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animate()
+    }
 }
 
 
@@ -94,16 +107,20 @@ extension LoginViewController {
         //App Title Label
         NSLayoutConstraint.activate([
             appDescription.topAnchor.constraint(equalToSystemSpacingBelow: appTitle.bottomAnchor, multiplier: 3),
-            appTitle.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             appTitle.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
+        
+        appTitleLeadingConstraint = appTitle.leadingAnchor.constraint(equalTo: loginView.leadingAnchor,constant: leadingEdgeOffScreen)
+        appTitleLeadingConstraint?.isActive = true
         
         //App Description Label
         NSLayoutConstraint.activate([
             loginView.topAnchor.constraint(equalToSystemSpacingBelow: appDescription.bottomAnchor, multiplier: 3),
-            appDescription.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             appDescription.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
+        
+        appDescriptionLeadingConstraint = appDescription.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: leadingEdgeOffScreen)
+        appDescriptionLeadingConstraint?.isActive = true
         
         //Login View
         NSLayoutConstraint.activate([
@@ -161,5 +178,29 @@ extension LoginViewController {
     private func configureView(withMessage message : String) {
         errorMessage.isHidden = false
         errorMessage.text = message
+    }
+}
+
+
+extension LoginViewController {
+    private func animate(){
+        let animationDuration = 0.8
+        let animator1 = UIViewPropertyAnimator(duration: animationDuration, curve: .easeInOut) {
+            self.appTitleLeadingConstraint?.constant = self.leadingEdgeOnScreen
+            self.view.layoutIfNeeded()
+        }
+        animator1.startAnimation()
+        let animator2 = UIViewPropertyAnimator(duration: animationDuration, curve: .easeInOut) {
+            self.appDescriptionLeadingConstraint?.constant = self.leadingEdgeOnScreen
+            self.view.layoutIfNeeded()
+        }
+        animator2.startAnimation(afterDelay: 0.2)
+        
+        let alphaAnimator = UIViewPropertyAnimator(duration: animationDuration * 2, curve: .easeInOut) {
+            self.appTitle.alpha = 1
+            self.appDescription.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+        alphaAnimator.startAnimation(afterDelay: 0.2)
     }
 }

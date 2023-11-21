@@ -136,6 +136,9 @@ extension LoginViewController {
     }
     
     private func login() {
+        signInButton.configuration?.showsActivityIndicator = true
+        delegate?.didLogin()
+        return
         guard let username, let password else {
             assertionFailure("Username / Password should never be nil!")
             return

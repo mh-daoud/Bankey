@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window : UIWindow?
     let loginViewController = LoginViewController()
     let onBoardingContainerViewController = OnBoardingContainerViewController()
-    let dummyViewController = DummyViewController()
     let mainViewController = MainViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -21,10 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
+        
         loginViewController.delegate = self
         onBoardingContainerViewController.delegate = self
-        dummyViewController.delegate = self
-        window?.rootViewController = mainViewController //loginViewController
+        
+        let vc = mainViewController
+        vc.setStatusBar()
+        
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = Theme.appColor
+        
+        window?.rootViewController = vc
+
         return true
     }
 }
@@ -50,7 +57,7 @@ extension AppDelegate {
 extension AppDelegate : LoginViewControllerDelegate {
     func didLogin() {
         if LocalState.hasOnBoarded {
-            setRootViewController(dummyViewController)
+            setRootViewController(mainViewController)
         }
         else {
             setRootViewController(onBoardingContainerViewController)
@@ -61,7 +68,7 @@ extension AppDelegate : LoginViewControllerDelegate {
 extension AppDelegate : OnBoardingContainerViewControllerDelegate {
     func didFinishOnBoarding() {
         LocalState.hasOnBoarded = true
-        setRootViewController(dummyViewController)
+        setRootViewController(mainViewController)
     }
 }
 

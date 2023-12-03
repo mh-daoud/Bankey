@@ -11,6 +11,7 @@ import UIKit
 class ShakeyBellView: UIView {
     
     let imageView = UIImageView()
+    let badge = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,16 +44,32 @@ extension ShakeyBellView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         let image = UIImage(systemName: "bell.fill")!.withTintColor(.white, renderingMode: .alwaysOriginal)
         imageView.image = image
+        
+        badge.translatesAutoresizingMaskIntoConstraints = false
+        badge.backgroundColor = .systemRed
+        badge.addRoundedCorner(radius: 8)
+        badge.titleLabel?.font =  UIFont.systemFont(ofSize: 13)
+        badge.setTitle("9", for: .normal)
+        badge.setTitleColor(.white, for: .normal)
     }
     
     func layout() {
-        addSubview(imageView)
+        [imageView, badge].forEach(self.addSubview)
         
+        //Image View
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 24),
-            imageView.widthAnchor.constraint(equalToConstant: 24)
+            imageView.widthAnchor.constraint(equalToConstant: 24),
+        ])
+        
+        //Badge View
+        NSLayoutConstraint.activate([
+            badge.widthAnchor.constraint(equalTo: badge.heightAnchor),
+            badge.heightAnchor.constraint(equalToConstant: 16),
+            badge.topAnchor.constraint(equalTo: imageView.topAnchor),
+            badge.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 4),
         ])
     }
 }
@@ -98,27 +115,5 @@ extension ShakeyBellView {
           },
           completion: nil
         )
-    }
-}
-
-// https://www.hackingwithswift.com/example-code/calayer/how-to-change-a-views-anchor-point-without-moving-it
-extension UIView {
-    func setAnchorPoint(_ point: CGPoint) {
-        var newPoint = CGPoint(x: bounds.size.width * point.x, y: bounds.size.height * point.y)
-        var oldPoint = CGPoint(x: bounds.size.width * layer.anchorPoint.x, y: bounds.size.height * layer.anchorPoint.y)
-
-        newPoint = newPoint.applying(transform)
-        oldPoint = oldPoint.applying(transform)
-
-        var position = layer.position
-
-        position.x -= oldPoint.x
-        position.x += newPoint.x
-
-        position.y -= oldPoint.y
-        position.y += newPoint.y
-
-        layer.position = position
-        layer.anchorPoint = point
     }
 }

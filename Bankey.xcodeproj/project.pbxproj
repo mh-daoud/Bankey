@@ -11,6 +11,8 @@
 		842019132B1C4D5B007A8C9C /* AccountSummaryViewController+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842019122B1C4D5B007A8C9C /* AccountSummaryViewController+Networking.swift */; };
 		843949992B1D990E00F2C59B /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843949982B1D990E00F2C59B /* ProfileTests.swift */; };
 		8439499B2B1D9B5C00F2C59B /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439499A2B1D9B5C00F2C59B /* AccountTests.swift */; };
+		8439499D2B1DACFC00F2C59B /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439499C2B1DACFC00F2C59B /* SkeletonLoadable.swift */; };
+		8439499F2B1DADF800F2C59B /* SkeletonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8439499E2B1DADF800F2C59B /* SkeletonCell.swift */; };
 		848BA1ED2B0870CC00A54832 /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BA1EC2B0870CC00A54832 /* Factories.swift */; };
 		848BA1F02B08791500A54832 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BA1EF2B08791500A54832 /* UIView+Extensions.swift */; };
 		848BA1F42B08D2FA00A54832 /* OnBoardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848BA1F32B08D2FA00A54832 /* OnBoardingContainerViewController.swift */; };
@@ -51,6 +53,8 @@
 		842019122B1C4D5B007A8C9C /* AccountSummaryViewController+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSummaryViewController+Networking.swift"; sourceTree = "<group>"; };
 		843949982B1D990E00F2C59B /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		8439499A2B1D9B5C00F2C59B /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		8439499C2B1DACFC00F2C59B /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
+		8439499E2B1DADF800F2C59B /* SkeletonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonCell.swift; sourceTree = "<group>"; };
 		848BA1EC2B0870CC00A54832 /* Factories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factories.swift; sourceTree = "<group>"; };
 		848BA1EF2B08791500A54832 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		848BA1F32B08D2FA00A54832 /* OnBoardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingContainerViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 			isa = PBXGroup;
 			children = (
 				84D71A8C2B0B181800FE27DD /* AccountSummaryCell.swift */,
+				8439499C2B1DACFC00F2C59B /* SkeletonLoadable.swift */,
+				8439499E2B1DADF800F2C59B /* SkeletonCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -349,6 +355,7 @@
 			files = (
 				84A08D482B04927200992F9E /* LoginView.swift in Sources */,
 				848BA1FB2B091CA300A54832 /* LocalState.swift in Sources */,
+				8439499F2B1DADF800F2C59B /* SkeletonCell.swift in Sources */,
 				842019112B1C4C6F007A8C9C /* Date+Extensions.swift in Sources */,
 				84A08D362B048E5600992F9E /* LoginViewController.swift in Sources */,
 				848BA2012B09C0C500A54832 /* MainViewController.swift in Sources */,
@@ -357,6 +364,7 @@
 				84D71A8D2B0B181800FE27DD /* AccountSummaryCell.swift in Sources */,
 				848BA1F02B08791500A54832 /* UIView+Extensions.swift in Sources */,
 				848BA1F42B08D2FA00A54832 /* OnBoardingContainerViewController.swift in Sources */,
+				8439499D2B1DACFC00F2C59B /* SkeletonLoadable.swift in Sources */,
 				848BA1FF2B09BF0D00A54832 /* UIViewController+Extensions.swift in Sources */,
 				848BA1ED2B0870CC00A54832 /* Factories.swift in Sources */,
 				848BA2062B09CE2100A54832 /* AccountSummaryHeaderView.swift in Sources */,
